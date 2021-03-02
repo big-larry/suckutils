@@ -1,9 +1,9 @@
 # Suckless go module
 
 ## Table of contents
-* [Concurrent File] (#concurrent-file)
-* [Rand UID] (#rand-uid)
-* [Strings functions] (#strings)
+* [Concurrent File](#concurrent-file)
+* [Rand UID](#rand-uid)
+* [Strings functions](#strings)
 
 ## Concurrent file
 Implementation for usage one file in several programs.
@@ -15,4 +15,4 @@ Implementation for usage one file in several programs.
 ## Strings
 Полезные функции для работы со строками.
 
-Быстренькие функции конкатенации строк. Рекомендованно использовать везьде!
+Быстренькие функции конкатенации строк. Рекомендованно использовать везде!
