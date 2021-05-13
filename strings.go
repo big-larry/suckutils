@@ -30,6 +30,15 @@ func WhereString(str []string, condition func(s string) bool) []string {
 	return result
 }
 
+func Contains(str []string, sub string) bool {
+	for _, s := range str {
+		if sub == s {
+			return true
+		}
+	}
+	return false
+}
+
 func ConcatNonString(elems ...interface{}) string {
 	n := 0
 	for i := 0; i < len(elems); i++ {
