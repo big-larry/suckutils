@@ -36,7 +36,7 @@ func OpenConcurrentFile(ctx context.Context, filename string, timeout time.Durat
 				break
 			}
 			f.Close()
-			f, err = os.OpenFile(filename, os.O_CREATE|os.O_APPEND|os.O_RDWR, 0664)
+			f, err = os.OpenFile(filename, os.O_CREATE|os.O_RDWR, 0664)
 			if err == nil {
 				result = &ConcurrentFile{File: f, lockFilename: lockFilename}
 			}
