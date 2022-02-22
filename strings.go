@@ -30,6 +30,13 @@ func WhereString(str []string, condition func(s string) bool) []string {
 	return result
 }
 
+func ReduceString(str []string, reduce func(s string) string) []string {
+	for i := 0; i < len(str); i++ {
+		str[i] = reduce(str[i])
+	}
+	return str
+}
+
 func Contains(str []string, sub string) bool {
 	for _, s := range str {
 		if sub == s {
