@@ -3,7 +3,6 @@ package suckutils
 import (
 	"context"
 	"errors"
-	"fmt"
 	"io"
 	"os"
 )
@@ -19,7 +18,7 @@ type Block struct {
 	Err   error
 }
 
-func Read(ctx context.Context, file *os.File, block_size int, define_block func([]byte) ([]byte, []byte, error)) <-chan []byte {
+func ReadBigFile(ctx context.Context, file *os.File, block_size int, define_block func([]byte) ([]byte, []byte, error)) <-chan []byte {
 	f := &bigFile{
 		file:         file,
 		block_size:   block_size,
@@ -33,10 +32,10 @@ func Read(ctx context.Context, file *os.File, block_size int, define_block func(
 		for {
 			select {
 			case <-ctx.Done():
+				close(result)
 				return
 			default:
 				remain, err = f.readNextBlock(remain, result)
-				fmt.Println(len(remain), err)
 				if err != nil {
 					if errors.Is(err, io.EOF) {
 						return
