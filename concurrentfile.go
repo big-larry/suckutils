@@ -12,7 +12,7 @@ type ConcurrentFile struct {
 	lockFilename string
 }
 
-func OpenConcurrentFile(ctx context.Context, filename string, timeout time.Duration) (*ConcurrentFile, error) {
+func OpenConcurrentFile(ctx context.Context, filename string, flag int, perm os.FileMode, timeout time.Duration) (*ConcurrentFile, error) {
 	ctx, cancel := context.WithTimeout(ctx, timeout)
 	timer := time.NewTicker(time.Millisecond * 100)
 	lockFilename := ConcatTwo(filename, ".lock")
@@ -36,7 +36,7 @@ func OpenConcurrentFile(ctx context.Context, filename string, timeout time.Durat
 				break
 			}
 			f.Close()
-			f, err = os.OpenFile(filename, os.O_CREATE|os.O_RDWR, 0664)
+			f, err = os.OpenFile(filename, flag, perm)
 			if err == nil {
 				result = &ConcurrentFile{File: f, lockFilename: lockFilename}
 			}

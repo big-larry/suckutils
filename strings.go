@@ -1,6 +1,7 @@
 package suckutils
 
 import (
+	"math"
 	"unsafe"
 )
 
@@ -93,4 +94,16 @@ func ConcatFour(s1, s2, s3, s4 string) string {
 	// result = append(result, elems[i]...)
 	copy(result[len(s1)+len(s2)+copy(result[len(s1)+copy(result[copy(result, s1):], s2):], s3):], s4)
 	return *(*string)(unsafe.Pointer(&result))
+}
+
+const digits = "0123456789"
+
+func Itoa(num uint32) string {
+	result := make([]byte, int(math.Log10(float64(num))+1))
+	for i := len(result) - 1; i >= 0; i-- {
+		result[i] = digits[num%10]
+		num /= 10
+	}
+
+	return string(result)
 }
