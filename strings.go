@@ -2,6 +2,7 @@ package suckutils
 
 import (
 	"math"
+	"strings"
 	"unsafe"
 )
 
@@ -42,6 +43,17 @@ func Contains(str []string, sub string) bool {
 	for _, s := range str {
 		if sub == s {
 			return true
+		}
+	}
+	return false
+}
+
+func ContainsAny(str []string, sub []string) bool {
+	for _, s := range str {
+		for _, ss := range sub {
+			if strings.Contains(s, ss) {
+				return true
+			}
 		}
 	}
 	return false
