@@ -58,6 +58,16 @@ func ContainsAny(str []string, sub []string) bool {
 	}
 	return false
 }
+func ContainsIndex(str []string, sub []string) int {
+	for i, s := range str {
+		for _, ss := range sub {
+			if strings.Contains(s, ss) {
+				return i
+			}
+		}
+	}
+	return -1
+}
 
 func ConcatNonString(elems ...interface{}) string {
 	n := 0
