@@ -39,6 +39,23 @@ func ReduceString(str []string, reduce func(s string) string) []string {
 	return str
 }
 
+func DistinctStrings(str []string) []string {
+	result := make([]string, 0, len(str))
+	for _, s := range str {
+		f := false
+		for _, r := range result {
+			if r == s {
+				f = true
+				break
+			}
+		}
+		if !f {
+			result = append(result, s)
+		}
+	}
+	return result
+}
+
 func Contains(str []string, sub string) bool {
 	for _, s := range str {
 		if sub == s {

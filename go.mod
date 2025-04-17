@@ -1,3 +1,3 @@
 module github.com/big-larry/suckutils
 
-go 1.16
+go 1.20
